@@ -1,0 +1,4052 @@
+{
+    "last_updated": "2022-12-06 09:35:55",
+    "postman_collection": "https://www.getpostman.com/collections/5470be359740d9a33fac",
+    "available_indicator": true,
+    "update_notes": [
+        "GET, POST, PUT jurnal.",
+        "POST pembelian.",
+        "POST penjualan.",
+        "POST costing."
+    ],
+    "data": [
+        {
+            "section": "post-token",
+            "title": null,
+            "data": {
+                "method": "post",
+                "url": "/api/Auth",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "username",
+                            "description": "username user BG Skin, silahkan menghubungi Admin BG Skin"
+                        },
+                        {
+                            "key": "password",
+                            "description": "password user BG Skin, silahkan menghubungi Admin BG Skin"
+                        }
+                    ],
+                    "example": {
+                        "username": "user1",
+                        "password": "password1"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "status",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": "User yang boleh login hanya yang memiliki role <b class='text-danger'>Pengguna API BG Skin</b>"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan diganti dengan 'error', jika terdapat error."
+                        },
+                        {
+                            "key": "token",
+                            "description": "JWT token yang dipakai untuk tiap request",
+                            "note": ""
+                        },
+                        {
+                            "key": "refresh_token",
+                            "description": "Token yang dipakai untuk refresh (jika main token kadaluarsa)",
+                            "note": ""
+                        },
+                        {
+                            "key": "expires",
+                            "description": "Waktu kadaluarsa token (dalam detik)",
+                            "note": ""
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Sukses",
+                        "error": null,
+                        "data": {
+                            "api_key": "eyJ0exxx",
+                            "expired": "never",
+                            "refresh_token": "eyJ0exxx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "refresh-token",
+            "title": null,
+            "data": {
+                "method": "post",
+                "url": "/api/Auth",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "refresh_token",
+                            "description": "refresh token, didapat pada saat get token"
+                        }
+                    ],
+                    "example": {
+                        "refresh_token": "eyJ0exxx"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "status",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": "User yang boleh login hanya yang memiliki role <b class='text-danger'>Pengguna API BG Skin</b>"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan diganti dengan 'error', jika terdapat error."
+                        },
+                        {
+                            "key": "token",
+                            "description": "JWT token yang dipakai untuk tiap request",
+                            "note": ""
+                        },
+                        {
+                            "key": "refresh_token",
+                            "description": "Token yang dipakai untuk refresh (jika main token kadaluarsa)",
+                            "note": ""
+                        },
+                        {
+                            "key": "expires",
+                            "description": "Waktu kadaluarsa token (dalam detik)",
+                            "note": ""
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Sukses",
+                        "error": null,
+                        "data": {
+                            "api_key": "eyJ0exxx",
+                            "expired": "never",
+                            "refresh_token": "eyJ0exxx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-bank",
+            "title": null,
+            "data": {
+                "method": "get",
+                "url": "api/bank",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "<span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "akun",
+                            "description": "Nomor Sesuai Jenis Akun"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "Nama Bank yang terdata"
+                        },
+                        {
+                            "key": "norek",
+                            "description": "Nomor Rekening Bank yang terdata"
+                        },
+                        {
+                            "key": "pemilik",
+                            "description": "Nama Pemilik Bank yang terdata"
+                        },
+                        {
+                            "key": "alamat",
+                            "description": "Alamat Pemilik Bank yang terdata"
+                        },
+                        {
+                            "key": "Telepon",
+                            "description": "Telepon Pemilik Bank yang terdata"
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/bank?akun=xxxx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "status",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan response",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Data response",
+                            "note": ""
+                        }
+                    ],
+                    "example": {
+                        "status": "200",
+                        "message": "Data ditemukan",
+                        "data": {
+                            "n_bank": "xx",
+                            "akun": "1xxx",
+                            "nama": "NAMA BANK",
+                            "norek": "543xxxxxxxxx",
+                            "pemilik": "NAMA PEMILIK",
+                            "alamat": "ALAMAT PEMILIK",
+                            "telepon": "081xxxxxxxxx",
+                            "is_active": "1",
+                            "created_by": "1",
+                            "created_at": "2022-11-25 08:57:52",
+                            "updated_by": null,
+                            "updated_at": null
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-bank",
+            "title": null,
+            "data": {
+                "method": "post",
+                "url": "/api/bank/insert",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "<span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "akun",
+                            "description": "Nomor Sesuai Jenis Akun"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "Nama Bank yang terdata"
+                        },
+                        {
+                            "key": "norek",
+                            "description": "Nomor Rekening Bank yang terdata"
+                        },
+                        {
+                            "key": "pemilik",
+                            "description": "Nama Pemilik Bank yang terdata"
+                        },
+                        {
+                            "key": "alamat",
+                            "description": "Alamat Pemilik Bank yang terdata"
+                        },
+                        {
+                            "key": "Telepon",
+                            "description": "Telepon Pemilik Bank yang terdata"
+                        }
+                    ],
+                    "example": {
+                        "n_bank": "xx",
+                        "akun": "1xxx",
+                        "nama": "NAMA BANK",
+                        "norek": "543xxxxxxxxx",
+                        "pemilik": "NAMA PEMILIK",
+                        "alamat": "ALAMAT PEMILIK",
+                        "telepon": "081xxxxxxxxx"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "status",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan response",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Data response",
+                            "note": ""
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data Berhasil Ditambahkan",
+                        "error": null,
+                        "data": {
+                            "akun": "1xxx",
+                            "nama": "NAMA BANK",
+                            "norek": "543xxxxxxxxx",
+                            "pemilik": "NAMA PEMILIK",
+                            "alamat": "ALAMAT PEMILIK",
+                            "telepon": "081xxxxxxxxx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "put-bank",
+            "title": null,
+            "data": {
+                "method": "put",
+                "url": "/api/bank/update",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "<span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "akun",
+                            "description": "Nomor Sesuai Jenis Akun"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "Nama Bank yang terdata"
+                        },
+                        {
+                            "key": "norek",
+                            "description": "Nomor Rekening Bank yang terdata"
+                        },
+                        {
+                            "key": "pemilik",
+                            "description": "Nama Pemilik Bank yang terdata"
+                        },
+                        {
+                            "key": "alamat",
+                            "description": "Alamat Pemilik Bank yang terdata"
+                        },
+                        {
+                            "key": "Telepon",
+                            "description": "Telepon Pemilik Bank yang terdata"
+                        }
+                    ],
+                    "example": {
+                        "n_bank": "xx",
+                        "akun": "1xxx",
+                        "nama": "NAMA BANK",
+                        "norek": "543xxxxxxxxx",
+                        "pemilik": "NAMA PEMILIK",
+                        "alamat": "ALAMAT PEMILIK",
+                        "telepon": "081xxxxxxxxx"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "status",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan response",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Data response",
+                            "note": ""
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data Berhasil Diubah",
+                        "error": null,
+                        "data": {
+                            "n_bank": "xx",
+                            "akun": "1xxx",
+                            "nama": "NAMA BANK",
+                            "norek": "543xxxxxxxxx",
+                            "pemilik": "NAMA PEMILIK",
+                            "alamat": "ALAMAT PEMILIK",
+                            "telepon": "081xxxxxxxxx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "delete-bank",
+            "title": null,
+            "data": {
+                "method": "delete",
+                "url": "/api/bank/delete",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "<span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "akun",
+                            "description": "Nomor Sesuai Jenis Akun"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "Nama Bank yang terdata"
+                        },
+                        {
+                            "key": "norek",
+                            "description": "Nomor Rekening Bank yang terdata"
+                        },
+                        {
+                            "key": "pemilik",
+                            "description": "Nama Pemilik Bank yang terdata"
+                        },
+                        {
+                            "key": "alamat",
+                            "description": "Alamat Pemilik Bank yang terdata"
+                        },
+                        {
+                            "key": "Telepon",
+                            "description": "Telepon Pemilik Bank yang terdata"
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/bank/delete?n_bank=xx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "status",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan response",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Data response",
+                            "note": ""
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil dihapus",
+                        "error": null,
+                        "data": {
+                            "n_bank": "xx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-coa",
+            "title": "Referensi mengambil data daftar perkiraan",
+            "data": {
+                "method": "get",
+                "url": "api/coa",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "akun",
+                            "description": "parameter akun hanya opsional, berfungsi untuk mengambil satu data akun saja."
+                        },
+                        {
+                            "key": "grup",
+                            "description": "parameter grup hanya opsional, berfungsi untuk mengambil data daftar perkiraan berdasarkan grupnya."
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/coa?akun=xxxx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": "key ini hanya berisi ketika response error"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan kosong jika response error"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data ditemukan",
+                        "error": null,
+                        "data": {
+                            "akun": "xxxx",
+                            "nama": "Nama Akun",
+                            "grup": "Grup Akun",
+                            "subgrup": "Sub Grup Akun",
+                            "detail": "Detail Akun",
+                            "debet": "0.00",
+                            "kredit": "0.00",
+                            "saldo": "0.00",
+                            "link": "Link Akun",
+                            "debet_link": "0.00",
+                            "kredit_link": "0.00",
+                            "saldo_link": "0.00",
+                            "is_active": "1",
+                            "created_by": "1",
+                            "created_at": "2022-09-02 14:48:13",
+                            "updated_by": null,
+                            "updated_at": null
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-coa",
+            "title": "Referensi tambah data akun daftar perkiraan",
+            "data": {
+                "method": "post",
+                "url": "api/coa/tambah",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "akun",
+                            "description": "Nomor akun yang akan ditambahkan ke dalam daftar perkiraan"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "Nama akun"
+                        },
+                        {
+                            "key": "grup",
+                            "description": "Grup akun"
+                        },
+                        {
+                            "key": "subgrup",
+                            "description": "Sub grup akun"
+                        },
+                        {
+                            "key": "detail",
+                            "description": "Detail akun"
+                        },
+                        {
+                            "key": "link",
+                            "description": "Link akun"
+                        }
+                    ],
+                    "example": {
+                        "akun": "1xxx",
+                        "nama": "NAMA AKUN",
+                        "grup": "NAMA GRUP",
+                        "subgrup": "NAMA SUB GRUP",
+                        "detail": "DETAIL AKUN",
+                        "link": "1xxx"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Sukses, Data berhasil ditambahkan",
+                        "error": null,
+                        "data": {
+                            "akun": "1xxx",
+                            "nama": "NAMA AKUN",
+                            "grup": "NAMA GRUP",
+                            "subgrup": "NAMA SUB GRUP",
+                            "detail": "DETAIL AKUN",
+                            "debet": "0.00",
+                            "kredit": "0.00",
+                            "saldo": "0.00",
+                            "link": "1xxx",
+                            "debet_link": "0.00",
+                            "kredit_link": "0.00",
+                            "saldo_link": "0.00",
+                            "is_active": "1",
+                            "created_by": "1",
+                            "created_at": "2022-11-29 00:35:10",
+                            "updated_by": null,
+                            "updated_at": null
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "put-coa",
+            "title": "Referensi mengedit data coa",
+            "data": {
+                "method": "put",
+                "url": "/api/coa/edit",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "nomor_pemasok",
+                            "description": "kode nomor pemasok"
+                        },
+                        {
+                            "key": "akun",
+                            "description": "nomor akun teregistrasi di dalam daftar akun perkiraan"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "nama pemasok yang akan di ubah"
+                        },
+                        {
+                            "key": "alamat",
+                            "description": "alamat pemasok yang akan di ubah"
+                        },
+                        {
+                            "key": "telepon",
+                            "description": "telepon pemasok yang akan di ubah"
+                        },
+                        {
+                            "key": "email",
+                            "description": "email pemasok yang akan di ubah"
+                        },
+                        {
+                            "key": "batas",
+                            "description": "batas kredit pemasok yang akan di ubah"
+                        }
+                    ],
+                    "example": {
+                        "nomor_pemasok": "xxxx",
+                        "akun": "2222",
+                        "nama": "pemasok diubah",
+                        "alamat": "alamat diubah",
+                        "telepon": "0852xxxxx",
+                        "email": "ubah.pemasok@gmail.com",
+                        "batas": "xxxxx"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Sukses, Data berhasil diedit",
+                        "error": null,
+                        "data": {
+                            "n_pemasok": "xxxx",
+                            "tanggal": "2022-11-03",
+                            "akun": "2222",
+                            "nama": "pemasok diubah",
+                            "alamat": "alamat diubah",
+                            "telepon": "0852xxxxx",
+                            "email": "ubah.pemasok@gmail.com",
+                            "batas": "500000000.00",
+                            "statusA": "1",
+                            "created_by": "1",
+                            "created_at": "2022-11-03 12:16:03",
+                            "updated_by": "1",
+                            "updated_at": "2022-11-26 13:15:05"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "del-coa",
+            "title": "Referensi menghapus data coa",
+            "data": {
+                "method": "delete",
+                "url": "/api/coa/hapus",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "nomor_pemasok",
+                            "description": "kode nomor pemasok"
+                        }
+                    ],
+                    "example": {
+                        "nomor_pemasok": "supxxxx"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Sukses, Data berhasil dihapus",
+                        "error": null,
+                        "data": {
+                            "nomor_pemasok": "SUP000023"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-pemasok",
+            "title": null,
+            "data": {
+                "method": "get",
+                "url": "api/pemasok",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_pemasok",
+                            "description": "parameter id nomor pemasok(cukup satu parameter saja)"
+                        },
+                        {
+                            "key": "akun",
+                            "description": "parameter akun pemasok(cukup satu parameter saja)"
+                        },
+                        {
+                            "key": "tanggal",
+                            "description": "parameter tanggal registrasi akun pemasok(cukup satu parameter saja)"
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/pemasok?n_pemasok=xxxx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": "key ini hanya berisi ketika response error"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan kosong jika response error"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data ditemukan",
+                        "error": null,
+                        "data": {
+                            "n_pemasok": "xxxx",
+                            "tanggal": "2022-11-04",
+                            "akun": "1xxx",
+                            "nama": "NAMA PEMASOK",
+                            "alamat": "ALAMAT PEMASOK",
+                            "telepon": "081xxxxxxxxx",
+                            "email": "xxxx@gmail.com",
+                            "batas": "100000.00",
+                            "statusA": "1",
+                            "created_by": "1",
+                            "created_at": "2022-11-04 07:59:42",
+                            "updated_by": null,
+                            "updated_at": null
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-pemasok",
+            "title": "Referensi tambah data pemasok",
+            "data": {
+                "method": "post",
+                "url": "api/pemasok/tambah",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "akun",
+                            "description": "nomor akun yang teregistrasi di dalam daftar akun perkiraan"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "nama pemasok"
+                        },
+                        {
+                            "key": "alamat",
+                            "description": "alamat pemasok"
+                        },
+                        {
+                            "key": "telepon",
+                            "description": "telepon pemasok"
+                        },
+                        {
+                            "key": "email",
+                            "description": "email pemasok"
+                        },
+                        {
+                            "key": "batas",
+                            "description": "batas kredit yang diberikan pemasok"
+                        }
+                    ],
+                    "example": {
+                        "akun": "1xxx",
+                        "nama": "NAMA PEMASOK",
+                        "alamat": "ALAMAT PEMASOK",
+                        "telepon": "081xxxxxxxxx",
+                        "email": "xxxx@gmail.com",
+                        "batas": "200000"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Sukses, Data berhasil ditambahkan",
+                        "error": null,
+                        "data": {
+                            "n_pemasok": "SUPxxxxxx",
+                            "tanggal": "2022-11-25",
+                            "akun": "1xxx",
+                            "nama": "NAMA PEMASOK",
+                            "alamat": "ALAMAT PEMASOK",
+                            "telepon": "081xxxxxxxxx",
+                            "email": "xxxx@gmail.com",
+                            "batas": "200000.00",
+                            "statusA": "1",
+                            "created_by": "1",
+                            "created_at": "2022-11-25 18:48:12",
+                            "updated_by": null,
+                            "updated_at": null
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "put-pemasok",
+            "title": "Referensi mengedit data pemasok",
+            "data": {
+                "method": "put",
+                "url": "/api/pemasok/edit",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "nomor_pemasok",
+                            "description": "kode nomor pemasok"
+                        },
+                        {
+                            "key": "akun",
+                            "description": "nomor akun teregistrasi di dalam daftar akun perkiraan"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "nama pemasok yang akan di ubah"
+                        },
+                        {
+                            "key": "alamat",
+                            "description": "alamat pemasok yang akan di ubah"
+                        },
+                        {
+                            "key": "telepon",
+                            "description": "telepon pemasok yang akan di ubah"
+                        },
+                        {
+                            "key": "email",
+                            "description": "email pemasok yang akan di ubah"
+                        },
+                        {
+                            "key": "batas",
+                            "description": "batas kredit pemasok yang akan di ubah"
+                        }
+                    ],
+                    "example": {
+                        "nomor_pemasok": "SUPxxxxxx",
+                        "akun": "1xxx",
+                        "nama": "NAMA PEMASOK",
+                        "alamat": "ALAMAT PEMASOK",
+                        "telepon": "081xxxxxxxxx",
+                        "email": "xxxx@gmail.com",
+                        "batas": "400000"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Sukses, Data berhasil diedit",
+                        "error": null,
+                        "data": {
+                            "n_pemasok": "SUPxxxxxx",
+                            "tanggal": "2022-11-03",
+                            "akun": "1xxx",
+                            "nama": "NAMA PEMASOK",
+                            "alamat": "ALAMAT PEMASOK",
+                            "telepon": "081xxxxxxxxx",
+                            "email": "xxxx@gmail.com",
+                            "batas": "400000.00",
+                            "statusA": "1",
+                            "created_by": "1",
+                            "created_at": "2022-11-03 12:16:03",
+                            "updated_by": "1",
+                            "updated_at": "2022-11-26 13:15:05"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "del-pemasok",
+            "title": "Referensi menghapus data pemasok",
+            "data": {
+                "method": "delete",
+                "url": "/api/pemasok/hapus",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "nomor_pemasok",
+                            "description": "kode nomor pemasok"
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/pemasok/hapus?nomor_pemasok=SUPxxxxxx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Sukses, Data berhasil dihapus",
+                        "error": null,
+                        "data": {
+                            "nomor_pemasok": "SUPxxxxxx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-pelanggan",
+            "title": "Referensi tampil data pelanggan",
+            "data": {
+                "method": "get",
+                "url": "api/pelanggan",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer<span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_pelanggan",
+                            "description": "Kode nomor pelanggan yang menjadi pembeda diantara data pelanggan"
+                        },
+                        {
+                            "key": "tanggal",
+                            "description": "Tanggal registrasi pelanggan"
+                        },
+                        {
+                            "key": "akun",
+                            "description": "Nomor akun yang teregistrasi di dalam daftar akun perkiraan"
+                        },
+                        {
+                            "key": "statusA",
+                            "description": "Status keaktifan pelanggan"
+                        },
+                        {
+                            "key": "n_sales",
+                            "description": "Nomor sales yang sudah teregistrasi dalam daftar sales dan berhubungan dengan pelanggan"
+                        }
+                    ],
+                    "example": "http://sajada-app.test/back-accounting/api/pelanggan?n_pelanggan=CUSXXXX"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "Terisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data ditemukan",
+                        "error": null,
+                        "data": {
+                            "n_pelanggan": "CUS008522",
+                            "barcode": null,
+                            "pass": null,
+                            "tanggal": "2022-11-01",
+                            "akun": "1101",
+                            "nama": "MAHASISWA",
+                            "alamat": "Jl. Gemilang No. 1, Kota Surabaya",
+                            "telepon": "081242889725",
+                            "email": "jayajaya@gmail",
+                            "batas": "100000.00",
+                            "statusA": "1",
+                            "n_sales": "SAL000001",
+                            "created_by": "1",
+                            "created_at": "2022-11-01 08:26:12",
+                            "updated_by": null,
+                            "updated_at": null,
+                            "n_akun": "PIUTANG MAHASISWA",
+                            "nama_sales": "SUGI"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-pelanggan",
+            "title": "Referensi tambah data pelanggan",
+            "data": {
+                "method": "post",
+                "url": "api/pelanggan/create",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer<span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "barcode",
+                            "description": "Barcode pelanggan"
+                        },
+                        {
+                            "key": "tanggal",
+                            "description": "Tanggal registrasi pelanggan"
+                        },
+                        {
+                            "key": "akun",
+                            "description": "Nomor akun yang teregistrasi di dalam daftar akun perkiraan"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "Nama pelanggan"
+                        },
+                        {
+                            "key": "alamat",
+                            "description": "Alamat milik pelanggan"
+                        },
+                        {
+                            "key": "telepon",
+                            "description": "Nomor telepon milik pelanggan"
+                        },
+                        {
+                            "key": "email",
+                            "description": "Email milik pelanggan"
+                        },
+                        {
+                            "key": "batas",
+                            "description": "Batas kredit yang dimiliki oleh pelanggan"
+                        },
+                        {
+                            "key": "n_sales",
+                            "description": "Nomor sales yang sudah teregistrasi dalam daftar sales dan berhubungan dengan pelanggan"
+                        }
+                    ],
+                    "example": {
+                        "barcode": null,
+                        "tanggal": "2022-11-22",
+                        "akun": "1002",
+                        "nama": "SOENHARJO",
+                        "alamat": "Jl. KP No. 66",
+                        "telepon": "081279468164",
+                        "email": "entroponium@gmail.com",
+                        "batas": "0.00",
+                        "n_sales": "1001"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "Terisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil ditambahkan",
+                        "error": null,
+                        "data": {
+                            "barcode": null,
+                            "tanggal": "2022-11-22",
+                            "akun": "1002",
+                            "nama": "SOENHARJO",
+                            "alamat": "Jl. KP No. 66",
+                            "telepon": "081279468164",
+                            "email": "entroponium@gmail.com",
+                            "batas": "0.00",
+                            "n_sales": "1001"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "put-pelanggan",
+            "title": "Referensi update data pelanggan",
+            "data": {
+                "method": "put",
+                "url": "api/pelanggan/update",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer<span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_pelanggan",
+                            "description": "Kode nomor pelanggan yang menjadi pembeda diantara data pelanggan"
+                        },
+                        {
+                            "key": "barcode",
+                            "description": "Barcode pelanggan"
+                        },
+                        {
+                            "key": "tanggal",
+                            "description": "Tanggal registrasi pelanggan"
+                        },
+                        {
+                            "key": "akun",
+                            "description": "Nomor akun yang teregistrasi di dalam daftar akun perkiraan"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "Nama pelanggan"
+                        },
+                        {
+                            "key": "alamat",
+                            "description": "Alamat milik pelanggan"
+                        },
+                        {
+                            "key": "telepon",
+                            "description": "Nomor telepon milik pelanggan"
+                        },
+                        {
+                            "key": "email",
+                            "description": "Email milik pelanggan"
+                        },
+                        {
+                            "key": "batas",
+                            "description": "Batas kredit yang dimiliki oleh pelanggan"
+                        },
+                        {
+                            "key": "status",
+                            "description": "Status keaktifan pelanggan"
+                        },
+                        {
+                            "key": "n_sales",
+                            "description": "Nomor sales yang sudah teregistrasi dalam daftar sales dan berhubungan dengan pelanggan"
+                        }
+                    ],
+                    "example": {
+                        "n_pelanggan": "CUS008524",
+                        "barcode": null,
+                        "tanggal": "2022-11-23",
+                        "akun": "1002",
+                        "nama": "KARIM",
+                        "alamat": "Jl. Ngalig No. 349, Antah",
+                        "telepon": "089875646787",
+                        "email": "sosiot@gmail.com",
+                        "batas": "0.00",
+                        "status": "1",
+                        "n_sales": "1001"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "Terisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil diubah",
+                        "error": null,
+                        "data": {
+                            "n_pelanggan": "CUS008524",
+                            "barcode": null,
+                            "tanggal": "2022-11-23",
+                            "akun": "1002",
+                            "nama": "KARIM",
+                            "alamat": "Jl. Ngalig No. 349, Antah",
+                            "telepon": "089875646787",
+                            "email": "sosiot@gmail.com",
+                            "batas": "0.00",
+                            "status": "1",
+                            "n_sales": "1001"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "del-pelanggan",
+            "title": "Referensi menghapus data pelanggan",
+            "data": {
+                "method": "delete",
+                "url": "/api/pelanggan/delete",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer<span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_pelanggan",
+                            "description": "Kode nomor pelanggan yang menjadi pembeda diantara data pelanggan"
+                        }
+                    ],
+                    "example": "http://sajada-app.test/back-accounting/api/pelanggan/delete?n_pelanggan=CUSXXXX"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "Terisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil dihapus",
+                        "error": null,
+                        "data": "CUS008527"
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-barang",
+            "title": "Referensi mengambil data barang",
+            "data": {
+                "method": "get",
+                "url": "api/barang",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_barang",
+                            "description": "parameter nomor barang hanya opsional, berfungsi untuk mengambil satu data barang saja."
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/barang?n_barang=xxxx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": "key ini hanya berisi ketika response error"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan kosong jika response error"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data ditemukan",
+                        "error": null,
+                        "data": {
+                            "n_barang": "xxxx",
+                            "barcode": "-",
+                            "akun_hpp": "6xxx",
+                            "akun_persediaan": "1xxx",
+                            "akun_pendapatan": "4xxx",
+                            "nama": "NAMA BARANG",
+                            "harga_pokok": "1000.00",
+                            "harga_beli": "100.00",
+                            "harga_jual1": "1000.00",
+                            "harga_jual2": "0.00",
+                            "harga_jual3": "0.00",
+                            "stock_awal": "1260",
+                            "stock_gudang": "1537",
+                            "stock_etalase": "0",
+                            "stock_min": "0",
+                            "n_unit": "PCS",
+                            "b_unit": "PCS",
+                            "konversi_unit": "1.00",
+                            "n_grup": "xxxx",
+                            "diskon": "0.00",
+                            "keterangan1": "-",
+                            "keterangan2": "-",
+                            "keterangan3": "-",
+                            "is_active": "1",
+                            "created_by": "1",
+                            "created_at": "2022-06-14 13:11:26",
+                            "updated_by": "1",
+                            "updated_at": "2022-10-28 14:51:23"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-barang-grup",
+            "title": "Referensi mengambil data grup barang",
+            "data": {
+                "method": "get",
+                "url": "api/barang/baranggrup",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_grup",
+                            "description": "parameter nomor grup hanya opsional, berfungsi untuk mengambil satu data grup barang saja."
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/barang/barangrup?n_grup=xxxx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": "key ini hanya berisi ketika response error"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan kosong jika response error"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data ditemukan",
+                        "error": null,
+                        "data": {
+                            "n_grup": "xxxx",
+                            "grup": "NAMA GRUP",
+                            "departement": "NAMA DEPARTEMENT",
+                            "akun_hpp": "6xxx",
+                            "akun_persediaan": "1xxx",
+                            "akun_pendapatan": "4xxx",
+                            "margin_grup": "0",
+                            "margin_departement": "0",
+                            "kode": "xxxx",
+                            "is_active": "1",
+                            "created_by": "1",
+                            "created_at": "2022-06-14 13:11:36",
+                            "updated_by": null,
+                            "updated_at": null
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-barang",
+            "title": "Referensi tambah data barang",
+            "data": {
+                "method": "post",
+                "url": "api/barang/tambah",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_barang",
+                            "description": "Nomor barang (required)"
+                        },
+                        {
+                            "key": "barcode",
+                            "description": "Barcode"
+                        },
+                        {
+                            "key": "akun_hpp",
+                            "description": "Akun HPP yang tersedia di daftar perkiraan (required)"
+                        },
+                        {
+                            "key": "akun_persediaan",
+                            "description": "Akun persediaan yang tersedia di daftar perkiraan (required)"
+                        },
+                        {
+                            "key": "akun_pendapatan",
+                            "description": "Akun pendapatan yang tersedia di daftar perkiraan (required)"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "Nama barang (required)"
+                        },
+                        {
+                            "key": "harga_pokok",
+                            "description": "Harga pokok barang"
+                        },
+                        {
+                            "key": "harga_beli",
+                            "description": "Harga beli barang"
+                        },
+                        {
+                            "key": "harga_jual1",
+                            "description": "Harga jual ke-1 barang"
+                        },
+                        {
+                            "key": "harga_jual2",
+                            "description": "Harga jual ke-2 barang"
+                        },
+                        {
+                            "key": "harga_jual3",
+                            "description": "Harga jual ke-3 barang"
+                        },
+                        {
+                            "key": "stock_awal",
+                            "description": "Stok awal barang (required)"
+                        },
+                        {
+                            "key": "stock_gudang",
+                            "description": "Stok gudang barang"
+                        },
+                        {
+                            "key": "stock_etalase",
+                            "description": "Stok etalase barang"
+                        },
+                        {
+                            "key": "stock_min",
+                            "description": "Stok minimal barang"
+                        },
+                        {
+                            "key": "n_unit",
+                            "description": "Unit normal barang"
+                        },
+                        {
+                            "key": "b_unit",
+                            "description": "Unit jumlah besar barang"
+                        },
+                        {
+                            "key": "konversi_unit",
+                            "description": "Nilai konversi unit barang"
+                        },
+                        {
+                            "key": "n_grup",
+                            "description": "Nomor grup barang"
+                        },
+                        {
+                            "key": "diskon",
+                            "description": "Diskon barang jika ada"
+                        },
+                        {
+                            "key": "keterangan1",
+                            "description": "Keterangan ke-1"
+                        },
+                        {
+                            "key": "keterangan2",
+                            "description": "Keterangan ke-2"
+                        },
+                        {
+                            "key": "keterangan3",
+                            "description": "Keterangan ke-3"
+                        }
+                    ],
+                    "example": {
+                        "n_barang": "xxxx",
+                        "barcode": "xxxx",
+                        "akun_hpp": "6xxx",
+                        "akun_persediaan": "1xxx",
+                        "akun_pendapatan": "4xxx",
+                        "nama": "NAMA BARANG",
+                        "harga_pokok": "10000",
+                        "harga_beli": "10000",
+                        "harga_jual1": "12000",
+                        "harga_jual2": "12250",
+                        "harga_jual3": "12500",
+                        "stock_awal": "100",
+                        "stock_gudang": "100",
+                        "stock_etalase": "100",
+                        "stock_min": "0",
+                        "n_unit": "PCS",
+                        "b_unit": "LUSIN",
+                        "konversi_unit": "12",
+                        "n_grup": "xxxx",
+                        "diskon": "0",
+                        "keterangan1": "Keterangan ke-1",
+                        "keterangan2": "Keterangan ke-2",
+                        "keterangan3": "Keterangan ke-3"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil ditambahkan",
+                        "error": null,
+                        "data": {
+                            "n_barang": "xxxx",
+                            "barcode": "xxxx",
+                            "akun_hpp": "6xxx",
+                            "akun_persediaan": "1xxx",
+                            "akun_pendapatan": "4xxx",
+                            "nama": "NAMA BARANG",
+                            "harga_pokok": "10000",
+                            "harga_beli": "10000",
+                            "harga_jual1": "12000",
+                            "harga_jual2": "12250",
+                            "harga_jual3": "12500",
+                            "stock_awal": "100",
+                            "stock_gudang": "100",
+                            "stock_etalase": "100",
+                            "stock_min": "0",
+                            "n_unit": "PCS",
+                            "b_unit": "LUSIN",
+                            "konversi_unit": "12",
+                            "n_grup": "xxxx",
+                            "diskon": "0",
+                            "keterangan1": "Keterangan ke-1",
+                            "keterangan2": "Keterangan ke-2",
+                            "keterangan3": "Keterangan ke-3"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-barang-grup",
+            "title": "Referensi tambah data grup barang",
+            "data": {
+                "method": "post",
+                "url": "api/barang/tambahbaranggrup",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_grup",
+                            "description": "Nomor grup barang (required)"
+                        },
+                        {
+                            "key": "grup",
+                            "description": "Nama grup barang (required)"
+                        },
+                        {
+                            "key": "departement",
+                            "description": "Nama departement"
+                        },
+                        {
+                            "key": "akun_hpp",
+                            "description": "Akun HPP yang tersedia di daftar perkiraan"
+                        },
+                        {
+                            "key": "akun_persediaan",
+                            "description": "Akun persediaan yang tersedia di daftar perkiraan"
+                        },
+                        {
+                            "key": "akun_pendapatan",
+                            "description": "Akun pendapatan yang tersedia di daftar perkiraan"
+                        },
+                        {
+                            "key": "margin_grup",
+                            "description": "Margin grup"
+                        },
+                        {
+                            "key": "margin_departement",
+                            "description": "Margin departement"
+                        },
+                        {
+                            "key": "kode",
+                            "description": "Kode barang"
+                        }
+                    ],
+                    "example": {
+                        "n_grup": "xx",
+                        "grup": "NAMA GRUP BARANG",
+                        "departement": "NAMA DEPARTEMENT",
+                        "akun_hpp": "6xxx",
+                        "akun_persediaan": "1xxx",
+                        "akun_pendapatan": "4xxx",
+                        "margin_grup": "0",
+                        "margin_departement": "0",
+                        "kode": "xx"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil ditambahkan",
+                        "error": null,
+                        "data": {
+                            "n_grup": "xx",
+                            "grup": "NAMA GRUP BARANG",
+                            "departement": "NAMA DEPARTEMENT",
+                            "akun_hpp": "6xxx",
+                            "akun_persediaan": "1xxx",
+                            "akun_pendapatan": "4xxx",
+                            "margin_grup": "0",
+                            "margin_departement": "0",
+                            "kode": "xx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "put-barang",
+            "title": "Referensi mengedit data barang",
+            "data": {
+                "method": "put",
+                "url": "/api/barang/edit",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_barang",
+                            "description": "Nomor barang (required)"
+                        },
+                        {
+                            "key": "barcode",
+                            "description": "Barcode"
+                        },
+                        {
+                            "key": "akun_hpp",
+                            "description": "Akun HPP yang tersedia di daftar perkiraan (required)"
+                        },
+                        {
+                            "key": "akun_persediaan",
+                            "description": "Akun persediaan yang tersedia di daftar perkiraan (required)"
+                        },
+                        {
+                            "key": "akun_pendapatan",
+                            "description": "Akun pendapatan yang tersedia di daftar perkiraan (required)"
+                        },
+                        {
+                            "key": "nama",
+                            "description": "Nama barang (required)"
+                        },
+                        {
+                            "key": "harga_pokok",
+                            "description": "Harga pokok barang"
+                        },
+                        {
+                            "key": "harga_beli",
+                            "description": "Harga beli barang"
+                        },
+                        {
+                            "key": "harga_jual1",
+                            "description": "Harga jual ke-1 barang"
+                        },
+                        {
+                            "key": "harga_jual2",
+                            "description": "Harga jual ke-2 barang"
+                        },
+                        {
+                            "key": "harga_jual3",
+                            "description": "Harga jual ke-3 barang"
+                        },
+                        {
+                            "key": "stock_awal",
+                            "description": "Stok awal barang (required)"
+                        },
+                        {
+                            "key": "stock_gudang",
+                            "description": "Stok gudang barang"
+                        },
+                        {
+                            "key": "stock_etalase",
+                            "description": "Stok etalase barang"
+                        },
+                        {
+                            "key": "stock_min",
+                            "description": "Stok minimal barang"
+                        },
+                        {
+                            "key": "n_unit",
+                            "description": "Unit normal barang"
+                        },
+                        {
+                            "key": "b_unit",
+                            "description": "Unit jumlah besar barang"
+                        },
+                        {
+                            "key": "konversi_unit",
+                            "description": "Nilai konversi unit barang"
+                        },
+                        {
+                            "key": "n_grup",
+                            "description": "Nomor grup barang"
+                        },
+                        {
+                            "key": "diskon",
+                            "description": "Diskon barang jika ada"
+                        },
+                        {
+                            "key": "keterangan1",
+                            "description": "Keterangan ke-1"
+                        },
+                        {
+                            "key": "keterangan2",
+                            "description": "Keterangan ke-2"
+                        },
+                        {
+                            "key": "keterangan3",
+                            "description": "Keterangan ke-3"
+                        }
+                    ],
+                    "example": {
+                        "n_barang": "xxxx",
+                        "barcode": "xxxx",
+                        "akun_hpp": "6xxx",
+                        "akun_persediaan": "1xxx",
+                        "akun_pendapatan": "4xxx",
+                        "nama": "NAMA BARANG",
+                        "harga_pokok": "10000",
+                        "harga_beli": "10000",
+                        "harga_jual1": "12000",
+                        "harga_jual2": "12250",
+                        "harga_jual3": "12500",
+                        "stock_awal": "100",
+                        "stock_gudang": "100",
+                        "stock_etalase": "100",
+                        "stock_min": "0",
+                        "n_unit": "PCS",
+                        "b_unit": "LUSIN",
+                        "konversi_unit": "12",
+                        "n_grup": "xxxx",
+                        "diskon": "0",
+                        "keterangan1": "Keterangan ke-1",
+                        "keterangan2": "Keterangan ke-2",
+                        "keterangan3": "Keterangan ke-3"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil diubah",
+                        "error": null,
+                        "data": {
+                            "n_barang": "xxxx",
+                            "barcode": "xxxx",
+                            "akun_hpp": "1xxx",
+                            "akun_persediaan": "6xxx",
+                            "akun_pendapatan": "4xxx",
+                            "nama": "NAMA BARANG",
+                            "harga_pokok": "10000",
+                            "harga_beli": "10000",
+                            "harga_jual1": "12000",
+                            "harga_jual2": "12250",
+                            "harga_jual3": "12500",
+                            "stock_awal": "100",
+                            "stock_gudang": "100",
+                            "stock_etalase": "100",
+                            "stock_min": "0",
+                            "n_unit": "PCS",
+                            "b_unit": "LUSIN",
+                            "konversi_unit": "12",
+                            "n_grup": "xxxx",
+                            "diskon": "0",
+                            "keterangan1": "Keterangan ke-1",
+                            "keterangan2": "Keterangan ke-2",
+                            "keterangan3": "Keterangan ke-3"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "put-barang-grup",
+            "title": "Referensi mengedit data grup barang",
+            "data": {
+                "method": "put",
+                "url": "/api/barang/editbaranggrup",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_grup",
+                            "description": "Nomor grup barang (required)"
+                        },
+                        {
+                            "key": "grup",
+                            "description": "Nama grup barang (required)"
+                        },
+                        {
+                            "key": "departement",
+                            "description": "Nama departement"
+                        },
+                        {
+                            "key": "akun_hpp",
+                            "description": "Akun HPP yang tersedia di daftar perkiraan"
+                        },
+                        {
+                            "key": "akun_persediaan",
+                            "description": "Akun persediaan yang tersedia di daftar perkiraan"
+                        },
+                        {
+                            "key": "akun_pendapatan",
+                            "description": "Akun pendapatan yang tersedia di daftar perkiraan"
+                        },
+                        {
+                            "key": "margin_grup",
+                            "description": "Margin grup"
+                        },
+                        {
+                            "key": "margin_departement",
+                            "description": "Margin departement"
+                        },
+                        {
+                            "key": "kode",
+                            "description": "Kode barang"
+                        }
+                    ],
+                    "example": {
+                        "n_grup": "xx",
+                        "grup": "NAMA GRUP BARANG",
+                        "departement": "NAMA DEPARTEMENT",
+                        "akun_hpp": "6xxx",
+                        "akun_persediaan": "1xxx",
+                        "akun_pendapatan": "4xxx",
+                        "margin_grup": "0",
+                        "margin_departement": "0",
+                        "kode": "xx"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil diubah",
+                        "error": null,
+                        "data": {
+                            "n_grup": "xx",
+                            "grup": "NAMA GRUP BARANG",
+                            "departement": "NAMA DEPARTEMENT",
+                            "akun_hpp": "6xxx",
+                            "akun_persediaan": "1xxx",
+                            "akun_pendapatan": "4xxx",
+                            "margin_grup": "0",
+                            "margin_departement": "0",
+                            "kode": "xx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "del-barang",
+            "title": "Referensi menghapus data barang",
+            "data": {
+                "method": "delete",
+                "url": "/api/barang/hapus",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_barang",
+                            "description": "Nomor barang (required)"
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/barang/hapus?n_barang=xxxx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil dihapus",
+                        "error": null,
+                        "data": "xxxx"
+                    }
+                }
+            }
+        },
+        {
+            "section": "del-barang-grup",
+            "title": "Referensi menghapus data grup barang",
+            "data": {
+                "method": "delete",
+                "url": "/api/barang/hapusbaranggrup",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_grup",
+                            "description": "Nomor grup barang (required)"
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/barang/hapusbaranggrup?n_grup=xx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil dihapus",
+                        "error": null,
+                        "data": "xx"
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-daftar-kasbank",
+            "title": "Referensi mengambil data daftar transaksi kas bank",
+            "data": {
+                "method": "get",
+                "url": "api/kasbank",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "tanggal",
+                            "description": "parameter tanggal hanya opsional, berfungsi untuk mengambil data daftar transaksi berdasarkan tanggal."
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/kasbank?tanggal=2022-12-01"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": "key ini hanya berisi ketika response error"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan kosong jika response error"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data ditemukan",
+                        "error": null,
+                        "data": [
+                            {
+                                "id": "xx",
+                                "n_kasbank": "KMxxxxxxxx",
+                                "tanggal": "2022-12-01",
+                                "reff": "-",
+                                "keterangan": "KETERANGAN",
+                                "jumlah": "100000.00",
+                                "statusA": "M",
+                                "n_bank": "KAS",
+                                "n_jurnal": "GLxxxxxxxx",
+                                "is_active": "1",
+                                "created_by": "1",
+                                "created_at": "2022-12-01 09:04:49",
+                                "updated_by": null,
+                                "updated_at": null
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-detail-kasbank",
+            "title": "Referensi mengambil data detail transaksi kas bank",
+            "data": {
+                "method": "get",
+                "url": "api/kasbank/detail",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_kasbank",
+                            "description": "parameter nomor kasbank wajib dimasukkan untuk mengambil data detail transaksi."
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/kasbank/detail?n_kasbank=KMxxxxxxxx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": "key ini hanya berisi ketika response error"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan kosong jika response error"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data ditemukan",
+                        "error": null,
+                        "data": [
+                            {
+                                "n_kasbank": "KMxxxxxxxx",
+                                "tanggal": "2022-12-08",
+                                "reff": "-",
+                                "keterangan": "Test api 2",
+                                "jumlah": "5500000.0",
+                                "akun": [
+                                    {
+                                        "no_akun": "4001",
+                                        "debet": "0.00",
+                                        "kredit": "5000000.00"
+                                    },
+                                    {
+                                        "no_akun": "4002",
+                                        "debet": "0.00",
+                                        "kredit": "5000000.00"
+                                    }
+                                ],
+                                "n_bank": "8",
+                                "n_jurnal": "GL2022120801"
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-kasbank",
+            "title": "Referensi tambah data transaksi kas bank",
+            "data": {
+                "method": "post",
+                "url": "api/kasbank/insert",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_transaksi",
+                            "description": "Nomor tranksasi diisi berdasarkan jenis transaksi, KM untuk kas masuk, KK untuk kas keluar, BM untuk bank masuk, BK untuk bank keluar"
+                        },
+                        {
+                            "key": "reff",
+                            "description": "Nomor referensi"
+                        },
+                        {
+                            "key": "keterangan",
+                            "description": "Keterangan transaksi"
+                        },
+                        {
+                            "key": "jml_baris",
+                            "description": "Jumlah baris"
+                        },
+                        {
+                            "key": "jenis",
+                            "description": "Jenis tranksasi, M untuk masuk, K untuk keluar"
+                        },
+                        {
+                            "key": "bayar",
+                            "description": "Cara bayar, KAS untuk kas, BANK untuk bank"
+                        },
+                        {
+                            "key": "no_bank",
+                            "description": "Jika cara bayar memilih kas maka diisi KAS, tapi jika cara bayar memilih bank maka nomor bank diisi sesuai nomor bank yang ada di daftar bank."
+                        },
+                        {
+                            "key": "tgl_transaksi",
+                            "description": "Tanggal transaksi kas bank"
+                        },
+                        {
+                            "key": "akun0",
+                            "description": "Akun yang tersedia di daftar perkiraan"
+                        },
+                        {
+                            "key": "jumlah0",
+                            "description": "Nominal transaksi"
+                        },
+                        {
+                            "key": "adddebet0",
+                            "description": "Nominal debet dimasukkan sesuai kondisi"
+                        },
+                        {
+                            "key": "addkredit0",
+                            "description": "Nominal kredit dimasukkan sesuai kondisi"
+                        },
+                        {
+                            "key": "sum_bayar",
+                            "description": "Total tranksasi"
+                        }
+                    ],
+                    "example": {
+                        "n_transaksi": "KM",
+                        "reff": "-",
+                        "keterangan": "KETERANGAN",
+                        "jml_baris": "3",
+                        "akun0": "4xxx",
+                        "jenis": "M",
+                        "bayar": "KAS",
+                        "jumlah0": "5000000",
+                        "no_bank": "KAS",
+                        "tgl_transaksi": "2022-12-01",
+                        "akun1": "4xxx",
+                        "adddebet1": "0.00",
+                        "jumlah1": "4000000",
+                        "akun2": "4xxx",
+                        "adddebet2": "0.00",
+                        "jumlah2": "1000000",
+                        "sum_bayar": "10000000.00"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data Berhasil Ditambahkan",
+                        "error": null,
+                        "data": {
+                            "n_transaksi": "KMxxxxxxxx",
+                            "reff": "-",
+                            "keterangan": "KETERANGAN",
+                            "jml_baris": "3",
+                            "akun0": "4xxx",
+                            "jenis": "M",
+                            "bayar": "1xxx",
+                            "jumlah0": "5000000",
+                            "no_bank": "KAS",
+                            "tgl_transaksi": "2022-12-01",
+                            "akun1": "4xxx",
+                            "adddebet1": "0.00",
+                            "jumlah1": "4000000",
+                            "akun2": "4xxx",
+                            "adddebet2": "0.00",
+                            "jumlah2": "1000000",
+                            "sum_bayar": "10000000.00"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-daftar-jurnal",
+            "title": "Referensi mengambil data daftar jurnal",
+            "data": {
+                "method": "get",
+                "url": "api/jurnal",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "tanggal",
+                            "description": "parameter tanggal hanya opsional, berfungsi untuk mengambil data daftar jurnal berdasarkan tanggal."
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/jurnal?tanggal=2022-11-29"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": "key ini hanya berisi ketika response error"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan kosong jika response error"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data ditemukan",
+                        "error": null,
+                        "data": {
+                            "id": "xx",
+                            "n_jurnal": "GLxxxxxxxx",
+                            "tanggal": "2022-11-29",
+                            "reff": "PTxxxxxxxx",
+                            "keterangan": "KETERANGAN",
+                            "jumlah": "300.00",
+                            "statusA": "PT",
+                            "created_by": "1",
+                            "created_at": "2022-11-29 09:26:36",
+                            "updated_by": null,
+                            "updated_at": null,
+                            "is_active": "1"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "get-detail-jurnal",
+            "title": "Referensi mengambil data detail jurnal",
+            "data": {
+                "method": "get",
+                "url": "api/kasbank/detail",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_jurnal",
+                            "description": "parameter nomor jurnal wajib dimasukkan untuk mengambil data detail jurnal."
+                        }
+                    ],
+                    "example": "http://localhost/sajada-app/back-accounting/api/jurnal/detail?n_jurnal=GLxxxxxxxx"
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": "key ini hanya berisi ketika response error"
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini akan kosong jika response error"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data ditemukan",
+                        "error": null,
+                        "data": [
+                            {
+                                "n_jurnal": "GLxxxxxxxx",
+                                "tanggal": "2022-11-29",
+                                "akun": "1xxx",
+                                "debet": "0.00",
+                                "kredit": "300.00",
+                                "status_valid": "b",
+                                "created_by": "1",
+                                "created_at": "2022-11-29 09:26:36",
+                                "updated_by": null,
+                                "updated_at": null
+                            },
+                            {
+                                "n_jurnal": "GLxxxxxxxx",
+                                "tanggal": "2022-11-29",
+                                "akun": "1xxx",
+                                "debet": "300.00",
+                                "kredit": "0.00",
+                                "status_valid": "b",
+                                "created_by": "1",
+                                "created_at": "2022-11-29 09:26:36",
+                                "updated_by": null,
+                                "updated_at": null
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-jurnal",
+            "title": "Referensi tambah data jurnal",
+            "data": {
+                "method": "post",
+                "url": "api/jurnal/tambah",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "tanggal",
+                            "description": "Tanggal jurnal"
+                        },
+                        {
+                            "key": "reff",
+                            "description": "Nomor referensi"
+                        },
+                        {
+                            "key": "keterangan",
+                            "description": "Keterangan jurnal"
+                        },
+                        {
+                            "key": "jml_baris",
+                            "description": "Jumlah baris"
+                        },
+                        {
+                            "key": "akun0",
+                            "description": "Akun yang tersedia di daftar perkiraan"
+                        },
+                        {
+                            "key": "adddebet0",
+                            "description": "Nominal debet dimasukkan sesuai kondisi"
+                        },
+                        {
+                            "key": "addkredit0",
+                            "description": "Nominal kredit dimasukkan sesuai kondisi"
+                        },
+                        {
+                            "key": "jumlah",
+                            "description": "Jumlah keseluruhan"
+                        }
+                    ],
+                    "example": {
+                        "tanggal": "2022-11-30",
+                        "reff": "",
+                        "keterangan": "KETERANGAN",
+                        "jml_baris": "2",
+                        "akun0": "1xxx",
+                        "adddebet0": "50000",
+                        "addkredit0": "0",
+                        "akun1": "4xxx",
+                        "adddebet1": "0",
+                        "addkredit1": "50000",
+                        "jumlah": "50000"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil ditambahkan",
+                        "error": null,
+                        "data": {
+                            "tanggal": "2022-11-30",
+                            "reff": "",
+                            "keterangan": "KETERANGAN",
+                            "jml_baris": "2",
+                            "akun0": "1xxx",
+                            "adddebet0": "50000",
+                            "addkredit0": "0",
+                            "akun1": "4xxx",
+                            "adddebet1": "0",
+                            "addkredit1": "50000",
+                            "jumlah": "50000",
+                            "n_jurnal": "GLxxxxxxxx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "put-jurnal",
+            "title": "Referensi mengedit data jurnal memorial",
+            "data": {
+                "method": "put",
+                "url": "/api/jurnal/edit",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "api_key",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "application/json"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "n_jurnal",
+                            "description": "Nomor jurnal yang mau diedit, hanya bisa mengedit jurnal memorial (jurnal yang dimasukkan secara manual melalui post jurnal)"
+                        },
+                        {
+                            "key": "tanggal",
+                            "description": "Tanggal jurnal"
+                        },
+                        {
+                            "key": "reff",
+                            "description": "Nomor referensi"
+                        },
+                        {
+                            "key": "keterangan",
+                            "description": "Keterangan jurnal"
+                        },
+                        {
+                            "key": "jml_baris",
+                            "description": "Jumlah baris"
+                        },
+                        {
+                            "key": "akun0",
+                            "description": "Akun yang tersedia di daftar perkiraan"
+                        },
+                        {
+                            "key": "adddebet0",
+                            "description": "Nominal debet dimasukkan sesuai kondisi"
+                        },
+                        {
+                            "key": "addkredit0",
+                            "description": "Nominal kredit dimasukkan sesuai kondisi"
+                        },
+                        {
+                            "key": "jumlah",
+                            "description": "Jumlah keseluruhan"
+                        }
+                    ],
+                    "example": {
+                        "n_jurnal": "GLxxxxxxxx",
+                        "tanggal": "2022-11-30",
+                        "reff": "",
+                        "keterangan": "KETERANGAN",
+                        "jml_baris": "2",
+                        "akun0": "1xxx",
+                        "adddebet0": "10000",
+                        "addkredit0": "0",
+                        "akun1": "4xxx",
+                        "adddebet1": "0",
+                        "addkredit1": "10000",
+                        "jumlah": "10000"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil diubah",
+                        "error": null,
+                        "data": {
+                            "n_jurnal": "GLxxxxxxxx",
+                            "tanggal": "2022-11-30",
+                            "reff": "",
+                            "keterangan": "KETERANGAN",
+                            "jml_baris": "2",
+                            "akun0": "1xxx",
+                            "adddebet0": "10000",
+                            "addkredit0": "0",
+                            "akun1": "4xxx",
+                            "adddebet1": "0",
+                            "addkredit1": "10000",
+                            "jumlah": "10000"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-pembelian",
+            "title": "Referensi tambah data pembelian",
+            "data": {
+                "method": "post",
+                "url": "api/pembelian/tambah",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "sum_barang",
+                            "description": "Jumlah barang"
+                        },
+                        {
+                            "key": "conversiUnit0",
+                            "description": "Nilai konversi unit barang"
+                        },
+                        {
+                            "key": "perkiraan0",
+                            "description": "Akun perkiraan yang didaftarkan pada saat menambahkan data barang."
+                        },
+                        {
+                            "key": "harga_diskon0",
+                            "description": "Harga barang setelah diskon"
+                        },
+                        {
+                            "key": "hargaT_asli0",
+                            "description": "Harga asli barang"
+                        },
+                        {
+                            "key": "harga0",
+                            "description": "Harga barang"
+                        },
+                        {
+                            "key": "n_barang0",
+                            "description": "Nomor barang yang terdaftar di daftar barang"
+                        },
+                        {
+                            "key": "diskon0",
+                            "description": "Diskon barang jika ada"
+                        },
+                        {
+                            "key": "total0",
+                            "description": "Total harga barang"
+                        },
+                        {
+                            "key": "totalBelibrg",
+                            "description": "Total keseluruhan harga barang"
+                        },
+                        {
+                            "key": "total_diskon",
+                            "description": "Total diskon"
+                        },
+                        {
+                            "key": "n_pemasok",
+                            "description": "Nomor pemasok yang terdaftar di daftar pemasok"
+                        },
+                        {
+                            "key": "reff",
+                            "description": "Nomor referensi"
+                        },
+                        {
+                            "key": "keterangan",
+                            "description": "Keterangan pembelian"
+                        },
+                        {
+                            "key": "tanggal",
+                            "description": "Tanggal pembelian"
+                        },
+                        {
+                            "key": "jatuh_tempo",
+                            "description": "Tanggal jatuh tempo pembelian"
+                        },
+                        {
+                            "key": "biaya_ppn",
+                            "description": "PPN pembelian jika ada"
+                        },
+                        {
+                            "key": "biaya_kirim",
+                            "description": "Biaya pengiriman jika ada"
+                        },
+                        {
+                            "key": "total_all",
+                            "description": "Total biaya pembelian yang akan dibayar"
+                        },
+                        {
+                            "key": "c_bayar",
+                            "description": "Cara bayar, kas untuk kas, bank untuk bank"
+                        },
+                        {
+                            "key": "no_bank",
+                            "description": "Nomor bank diisi sesuai nomor bank yang terdaftar di daftar bank jika pada cara bayar memilih bank, namun jika memilih kas, maka dikosongin"
+                        },
+                        {
+                            "key": "akun_bank",
+                            "description": "Akun bank diisi sesuai akun bank yang terdaftar di daftar bank jika pada cara bayar memilih bank, namun jika memilih kas, maka diisi kas"
+                        },
+                        {
+                            "key": "jml_bayar",
+                            "description": "Jumlah uang yang dibayarkan"
+                        },
+                        {
+                            "key": "sisa_bayar",
+                            "description": "Sisa uang yang harus dibayarkan jika tidak membayar secara penuh"
+                        },
+                        {
+                            "key": "uang_muka",
+                            "description": "Uang muka"
+                        }
+                    ],
+                    "example": {
+                        "sum_barang": "1",
+                        "conversiUnit0": "1",
+                        "perkiraan0": "1xxx",
+                        "harga_diskon0": "12000",
+                        "hargaT_asli0": "12000",
+                        "harga0": "12000",
+                        "n_barang0": "xxxx",
+                        "qty_barang0": "1",
+                        "satuan_barang0": "PCS",
+                        "harga_barang0": "12000",
+                        "diskon0": "0",
+                        "total0": "12000",
+                        "totalBelibrg": "12000",
+                        "total_diskon": "0",
+                        "n_pemasok": "SUPxxxxxx | NAMA PEMASOK",
+                        "reff": "",
+                        "keterangan": "Pembelian a/n NAMA PEMASOK",
+                        "tanggal": "2022-12-01",
+                        "jatuh_tempo": "2022-12-01",
+                        "biaya_ppn": "0",
+                        "biaya_kirim": "0",
+                        "total_all": "12000",
+                        "c_bayar": "kas",
+                        "no_bank": "",
+                        "akun_bank": "kas",
+                        "jml_bayar": "12000",
+                        "sisa_bayar": "0",
+                        "uang_muka": "0"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status Code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "berisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil ditambahkan",
+                        "error": null,
+                        "data": {
+                            "sum_barang": "1",
+                            "conversiUnit0": "1",
+                            "perkiraan0": "1xxx",
+                            "harga_diskon0": "12000",
+                            "hargaT_asli0": "12000",
+                            "harga0": "12000",
+                            "n_barang0": "xxxx",
+                            "qty_barang0": "1",
+                            "satuan_barang0": "PCS",
+                            "harga_barang0": "12000",
+                            "diskon0": "0",
+                            "total0": "12000",
+                            "totalBelibrg": "12000",
+                            "total_diskon": "0",
+                            "n_pemasok": "SUPxxxxxx | NAMA PEMASOK",
+                            "reff": "",
+                            "keterangan": "Pembelian a/n NAMA PEMASOK",
+                            "tanggal": "2022-12-01",
+                            "jatuh_tempo": "2022-12-01",
+                            "biaya_ppn": "0",
+                            "biaya_kirim": "0",
+                            "total_all": "12000",
+                            "c_bayar": "kas",
+                            "no_bank": "",
+                            "akun_bank": "kas",
+                            "jml_bayar": "12000",
+                            "sisa_bayar": "0",
+                            "uang_muka": "0",
+                            "n_transaksi": "PTxxxxxxxx"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-penjualan",
+            "title": "Referensi tambah data penjualan",
+            "data": {
+                "method": "post",
+                "url": "api/penjualan/create",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "sum_barang",
+                            "description": "Jumlah barang"
+                        },
+                        {
+                            "key": "conversiUnit0",
+                            "description": "Nilai konversi unit barang"
+                        },
+                        {
+                            "key": "h_diskon0",
+                            "description": "Harga diskon jika ada"
+                        },
+                        {
+                            "key": "akunpersediaan0",
+                            "description": "Akun persediaan yang digunakan dalam transaksasi penjualan"
+                        },
+                        {
+                            "key": "akun_hpp0",
+                            "description": "Akun hpp yang digunakan dalam transaksasi penjualan"
+                        },
+                        {
+                            "key": "akunpendapatan0",
+                            "description": "Akun pendapatan yang digunakan dalam transaksasi penjualan"
+                        },
+                        {
+                            "key": "harga_diskon0",
+                            "description": "Harga barang setelah diskon"
+                        },
+                        {
+                            "key": "hargaT_asli0",
+                            "description": "Harga asli barang"
+                        },
+                        {
+                            "key": "harga0",
+                            "description": "Harga barang"
+                        },
+                        {
+                            "key": "n_barang0",
+                            "description": "Nomor barang yang terdaftar di daftar barang"
+                        },
+                        {
+                            "key": "nama_barang0",
+                            "description": "Nama barang"
+                        },
+                        {
+                            "key": "qty_barang0",
+                            "description": "Jumlah barang"
+                        },
+                        {
+                            "key": "satuan_barang_0",
+                            "description": "Jenis satuan barang"
+                        },
+                        {
+                            "key": "harga_barang0",
+                            "description": "Harga barang"
+                        },
+                        {
+                            "key": "harga_hpp0",
+                            "description": "Harga barang pada hpp"
+                        },
+                        {
+                            "key": "diskon0",
+                            "description": "Diskon barang jika ada"
+                        },
+                        {
+                            "key": "total0",
+                            "description": "Total harga barang"
+                        },
+                        {
+                            "key": "total_hpp0",
+                            "description": "Total harga barang pada hpp"
+                        },
+                        {
+                            "key": "totalJualbrg",
+                            "description": "Harag total barang yang dijual"
+                        },
+                        {
+                            "key": "total_diskon",
+                            "description": "Total diskon"
+                        },
+                        {
+                            "key": "total_hppall",
+                            "description": "Total harga barang pada hpp"
+                        },
+                        {
+                            "key": "n_pelanggan",
+                            "description": "Kode nomor pelanggan yang menjadi pembeda diantara data pelanggan"
+                        },
+                        {
+                            "key": "n_sales",
+                            "description": "Kode nomor sales yang menjadi pembeda diantara data sales"
+                        },
+                        {
+                            "key": "reff",
+                            "description": "Nomor referensi"
+                        },
+                        {
+                            "key": "keterangan",
+                            "description": "Keterangan penjualan"
+                        },
+                        {
+                            "key": "tanggal",
+                            "description": "Tanggal penjualan"
+                        },
+                        {
+                            "key": "jatuh_tempo",
+                            "description": "Tanggal jatuh tempo penjualan"
+                        },
+                        {
+                            "key": "biaya_ppn",
+                            "description": "PPN penjualan jika ada"
+                        },
+                        {
+                            "key": "biaya_kirim",
+                            "description": "Biaya pengiriman jika ada"
+                        },
+                        {
+                            "key": "total_all",
+                            "description": "Total biaya penjualan yang akan dibayar"
+                        },
+                        {
+                            "key": "no_bank",
+                            "description": "Nomor bank diisi sesuai nomor bank yang terdaftar di daftar bank jika pada cara bayar memilih bank, namun jika memilih kas, maka dikosongkan"
+                        },
+                        {
+                            "key": "c_bayar",
+                            "description": "Cara bayar, kas untuk kas, bank untuk bank"
+                        },
+                        {
+                            "key": "akun_bank",
+                            "description": "Akun bank diisi sesuai akun bank yang terdaftar di daftar bank jika pada cara bayar memilih bank, namun jika memilih kas, maka diisi kas"
+                        },
+                        {
+                            "key": "jml_bayar",
+                            "description": "Jumlah uang yang dibayarkan"
+                        },
+                        {
+                            "key": "sisa_bayar",
+                            "description": "Sisa uang yang harus dibayarkan jika tidak membayar secara penuh"
+                        },
+                        {
+                            "key": "uang_muka",
+                            "description": "Uang muka"
+                        }
+                    ],
+                    "example": {
+                        "sum_barang": "1",
+                        "conversiUnit0": "1",
+                        "h_diskon0": "0",
+                        "akunpersediaan0": "1601",
+                        "akunhpp0": "6001",
+                        "akunpendapatan0": "4906",
+                        "harga_diskon0": "12000.00",
+                        "hargaT_asli0": "12000.00",
+                        "harga0": "12000.00",
+                        "n_barang0": "0004",
+                        "nama_barang0": "TEH KOTAK PAKET (ISI 3)",
+                        "qty_barang0": "1",
+                        "satuan_barang0": "1",
+                        "harga_barang0": "12000.00",
+                        "harga_hpp0": "10000.00",
+                        "diskon0": "0",
+                        "total0": "12000.00",
+                        "total_hpp0": "10000.00",
+                        "totalJualbrg": "12000.00",
+                        "total_diskon": "0",
+                        "total_hppall": "10000",
+                        "n_pelanggan": "CUS008530 | DJATMIKO",
+                        "n_sales": "1001",
+                        "reff": "-",
+                        "keterangan": "Penjualan a/n DJATMIKO",
+                        "tanggal": "2022-12-01",
+                        "jatuh_tempo": "2023-1-31",
+                        "biaya_ppn": "0.00",
+                        "biaya_kirim": "0.00",
+                        "total_all": "12000.00",
+                        "no_bank": "548",
+                        "c_bayar": "kas",
+                        "akun_bank": "kas",
+                        "jml_bayar": "12000",
+                        "sisa_bayar": "0.00",
+                        "uang_muka": "0"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "Terisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil ditambahkan",
+                        "error": null,
+                        "data": {
+                            "sum_barang": "1",
+                            "conversiUnit0": "1",
+                            "h_diskon0": "0",
+                            "akunpersediaan0": "1601",
+                            "akunhpp0": "6001",
+                            "akunpendapatan0": "4906",
+                            "harga_diskon0": "12000.00",
+                            "hargaT_asli0": "12000.00",
+                            "harga0": "12000.00",
+                            "n_barang0": "0004",
+                            "nama_barang0": "TEH KOTAK PAKET (ISI 3)",
+                            "qty_barang0": "1",
+                            "satuan_barang0": "1",
+                            "harga_barang0": "12000.00",
+                            "harga_hpp0": "10000.00",
+                            "diskon0": "0",
+                            "total0": "12000.00",
+                            "total_hpp0": "10000.00",
+                            "totalJualbrg": "12000.00",
+                            "total_diskon": "0",
+                            "total_hppall": "10000",
+                            "n_pelanggan": "CUS008530 | DJATMIKO",
+                            "n_sales": "1001",
+                            "reff": "-",
+                            "keterangan": "Penjualan a/n DJATMIKO",
+                            "tanggal": "2022-12-01",
+                            "jatuh_tempo": "2023-1-31",
+                            "biaya_ppn": "0.00",
+                            "biaya_kirim": "0.00",
+                            "total_all": "12000.00",
+                            "no_bank": "548",
+                            "c_bayar": "kas",
+                            "akun_bank": "kas",
+                            "jml_bayar": "12000",
+                            "sisa_bayar": "0.00",
+                            "uang_muka": "0"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "post-costing",
+            "title": "Referensi tambah data costing",
+            "data": {
+                "method": "post",
+                "url": "api/costing/create",
+                "request": {
+                    "format": "application/json",
+                    "header": [
+                        {
+                            "key": "authorization",
+                            "description": "Bearer <span class=\"badge badge-primary\">Token</span>"
+                        },
+                        {
+                            "key": "Content-Type",
+                            "description": "text/plain"
+                        }
+                    ],
+                    "value": [
+                        {
+                            "key": "sum_barang",
+                            "description": "Jumlah barang"
+                        },
+                        {
+                            "key": "conversiUnit0",
+                            "description": "Nilai konversi unit barang"
+                        },
+                        {
+                            "key": "perkiraan0",
+                            "description": "Akun perkiraan yang didaftarkan pada saat menambahkan data barang."
+                        },
+                        {
+                            "key": "harga0",
+                            "description": "Harga barang"
+                        },
+                        {
+                            "key": "stock0",
+                            "description": "Stok barang"
+                        },
+                        {
+                            "key": "n_barang0",
+                            "description": "Nomor barang yang terdaftar di daftar barang"
+                        },
+                        {
+                            "key": "nama_barang0",
+                            "description": "Nama barang"
+                        },
+                        {
+                            "key": "qty_barang0",
+                            "description": "Jumlah barang"
+                        },
+                        {
+                            "key": "satuan_barang0",
+                            "description": "Jenis satuan barang"
+                        },
+                        {
+                            "key": "harga_barang0",
+                            "description": "Harga barang"
+                        },
+                        {
+                            "key": "total0",
+                            "description": "Total harga barang"
+                        },
+                        {
+                            "key": "totalCosting",
+                            "description": "Jumlah nominal harga yang harus dipenuhi ketika transaksi costing"
+                        },
+                        {
+                            "key": "total_diskon",
+                            "description": "Total diskon"
+                        },
+                        {
+                            "key": "tanggal",
+                            "description": "Tanggal pembelian"
+                        },
+                        {
+                            "key": "reff",
+                            "description": "Nomor referensi"
+                        },
+                        {
+                            "key": "keterangan",
+                            "description": "Keterangan penjualan"
+                        },
+                        {
+                            "key": "akun",
+                            "description": "Kode daftar perkiraan yang digunakan pada saat melakukan transaksi"
+                        },
+                        {
+                            "key": "namaakun",
+                            "description": "Nama dari akun daftar perkiraan yang digunakan pada saat melakukan transaksi"
+                        }
+                    ],
+                    "example": {
+                        "sum_barang": "1",
+                        "conversiUnit0": "1",
+                        "perkiraan0": "1601",
+                        "harga0": "2092.96",
+                        "stock0": "279",
+                        "n_barang0": "0006",
+                        "nama_barang0": "INDOMIE GORENG",
+                        "qty_barang0": "1",
+                        "satuan_barang0": "1",
+                        "harga_barang0": "2092.96",
+                        "total0": "2092.96",
+                        "totalCosting": "2092.96",
+                        "total_diskon": "0",
+                        "tanggal": "01-Dec-2022",
+                        "reff": "-",
+                        "keterangan": "Transaksi Costing",
+                        "akun": "1101",
+                        "namaakun": "PIUTANG MAHASISWA"
+                    }
+                },
+                "response": {
+                    "format": "application/json",
+                    "value": [
+                        {
+                            "key": "code",
+                            "description": "Status code tiap request (lihat status code)",
+                            "note": ""
+                        },
+                        {
+                            "key": "message",
+                            "description": "Berisi pesan hasil respon yang diberikan",
+                            "note": ""
+                        },
+                        {
+                            "key": "error",
+                            "description": "Terisi keterangan error jika terjadi error",
+                            "note": ""
+                        },
+                        {
+                            "key": "data",
+                            "description": "Berisi data response",
+                            "note": "Key ini berisi data hasil inputan jika, respon berhasil"
+                        }
+                    ],
+                    "example": {
+                        "code": 200,
+                        "message": "Data berhasil ditambahkan",
+                        "error": null,
+                        "data": {
+                            "sum_barang": "1",
+                            "conversiUnit0": "1",
+                            "perkiraan0": "1601",
+                            "harga0": "2092.96",
+                            "stock0": "279",
+                            "n_barang0": "0006",
+                            "nama_barang0": "INDOMIE GORENG",
+                            "qty_barang0": "1",
+                            "satuan_barang0": "1",
+                            "harga_barang0": "2092.96",
+                            "total0": "2092.96",
+                            "totalCosting": "2092.96",
+                            "total_diskon": "0",
+                            "tanggal": "01-Dec-2022",
+                            "reff": "-",
+                            "keterangan": "Transaksi Costing",
+                            "akun": "1101",
+                            "namaakun": "PIUTANG MAHASISWA"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "section": "status-code",
+            "data": {
+                "status_code": [
+                    {
+                        "status": "200",
+                        "desc": "Sukses"
+                    },
+                    {
+                        "status": "400",
+                        "desc": "Bad Request"
+                    },
+                    {
+                        "status": "401",
+                        "desc": "Unauthorized (Expired Token/Login Failed)"
+                    },
+                    {
+                        "status": "403",
+                        "desc": "Forbidden Access (harus mengirimkan token/permission denied)"
+                    },
+                    {
+                        "status": "404",
+                        "desc": "Data tidak ditemukan"
+                    },
+                    {
+                        "status": "500",
+                        "desc": "Internal Server Error"
+                    },
+                    {
+                        "status": "false",
+                        "desc": "Other"
+                    }
+                ]
+            }
+        }
+    ],
+    "menu": [
+        {
+            "section": "AUTHENTICATION",
+            "data": [
+                {
+                    "title": "Token",
+                    "slug": "post-token"
+                },
+                {
+                    "title": "Refresh Token",
+                    "slug": "refresh-token"
+                }
+            ]
+        },
+        {
+            "section": "DATA BANK",
+            "data": [
+                {
+                    "title": "Daftar Bank",
+                    "slug": "get-bank"
+                },
+                {
+                    "title": "Tambah Bank",
+                    "slug": "post-bank"
+                },
+                {
+                    "title": "Edit Bank",
+                    "slug": "put-bank"
+                },
+                {
+                    "title": "Delete Bank",
+                    "slug": "delete-bank"
+                }
+            ]
+        },
+        {
+            "section": "DATA COA",
+            "data": [
+                {
+                    "title": "Daftar Coa",
+                    "slug": "get-coa"
+                },
+                {
+                    "title": "Tambah Coa",
+                    "slug": "post-coa"
+                },
+                {
+                    "title": "Edit Coa",
+                    "slug": "put-coa"
+                },
+                {
+                    "title": "Hapus Coa",
+                    "slug": "del-coa"
+                }
+            ]
+        },
+        {
+            "section": "DATA PEMASOK",
+            "data": [
+                {
+                    "title": "Pemasok",
+                    "slug": "get-pemasok"
+                },
+                {
+                    "title": "Tambah Pemasok",
+                    "slug": "post-pemasok"
+                },
+                {
+                    "title": "Edit Pemasok",
+                    "slug": "put-pemasok"
+                },
+                {
+                    "title": "Hapus Pemasok",
+                    "slug": "del-pemasok"
+                }
+            ]
+        },
+        {
+            "section": "DATA PELANGGAN",
+            "data": [
+                {
+                    "title": "Pelanggan",
+                    "slug": "get-pelanggan"
+                },
+                {
+                    "title": "Tambah Pelanggan",
+                    "slug": "post-pelanggan"
+                },
+                {
+                    "title": "Edit Pelanggan",
+                    "slug": "put-pelanggan"
+                },
+                {
+                    "title": "Hapus Pelanggan",
+                    "slug": "del-pelanggan"
+                }
+            ]
+        },
+        {
+            "section": "DATA BARANG & GRUP BARANG",
+            "data": [
+                {
+                    "title": "Barang",
+                    "slug": "get-barang"
+                },
+                {
+                    "title": "Grup Barang",
+                    "slug": "get-barang-grup"
+                },
+                {
+                    "title": "Tambah Barang",
+                    "slug": "post-barang"
+                },
+                {
+                    "title": "Tambah Grup Barang",
+                    "slug": "post-barang-grup"
+                },
+                {
+                    "title": "Edit Barang",
+                    "slug": "put-barang"
+                },
+                {
+                    "title": "Edit Grup Barang",
+                    "slug": "put-barang-grup"
+                },
+                {
+                    "title": "Hapus Barang",
+                    "slug": "del-barang"
+                },
+                {
+                    "title": "Hapus Grup Barang",
+                    "slug": "del-barang-grup"
+                }
+            ]
+        },
+        {
+            "section": "DATA TRANSAKSI KAS BANK",
+            "data": [
+                {
+                    "title": "Daftar Transaksi Kas Bank",
+                    "slug": "get-daftar-kasbank"
+                },
+                {
+                    "title": "Detail Transaksi Kas Bank",
+                    "slug": "get-detail-kasbank"
+                },
+                {
+                    "title": "Tambah Transaksi Kas Bank",
+                    "slug": "post-kasbank"
+                }
+            ]
+        },
+        {
+            "section": "DATA JURNAL",
+            "data": [
+                {
+                    "title": "Daftar Jurnal",
+                    "slug": "get-daftar-jurnal"
+                },
+                {
+                    "title": "Detail Jurnal",
+                    "slug": "get-detail-jurnal"
+                },
+                {
+                    "title": "Tambah Jurnal",
+                    "slug": "post-jurnal"
+                },
+                {
+                    "title": "Edit Jurnal Memorial",
+                    "slug": "put-jurnal"
+                }
+            ]
+        },
+        {
+            "section": "DATA PEMBELIAN",
+            "data": [
+                {
+                    "title": "Tambah Pembelian",
+                    "slug": "post-pembelian"
+                }
+            ]
+        },
+        {
+            "section": "DATA PENJUALAN",
+            "data": [
+                {
+                    "title": "Tambah Penjualan",
+                    "slug": "post-penjualan"
+                }
+            ]
+        },
+        {
+            "section": "DATA COSTING",
+            "data": [
+                {
+                    "title": "Tambah Costing",
+                    "slug": "post-costing"
+                }
+            ]
+        },
+        {
+            "section": "LAINNYA",
+            "data": [
+                {
+                    "title": "Status Code",
+                    "slug": "status-code"
+                }
+            ]
+        }
+    ]
+}
